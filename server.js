@@ -1,12 +1,18 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var db = require('./db/database');
+
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.get('/', function (req, res) {
     res.sendFile('index.html', {root: path.join(__dirname, '../public')});
+});
+
+app.get('/services/talere', function (req, res) {
+    res.send(db.getAll());
 });
 
 var port = Number(process.env.PORT || 8080);
