@@ -1,0 +1,36 @@
+{
+  "name": "ansa-gf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Frithjof Nerdrum",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "express": "^4.13.0",
+    "flux": "^2.0.3",
+    "keymirror": "^0.1.1",
+    "moment": "^2.10.3",
+    "object-assign": "^3.0.0",
+    "react": "^0.13.3",
+    "sockjs-client": "^1.0.0",
+    "stompjs": "^2.3.3",
+    "superagent": "^1.2.0"
+  },
+  "devDependencies": {
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.4",
+    "format": "^0.2.1",
+    "gulp": "^3.9.0",
+    "gulp-less": "^3.0.3",
+    "gulp-notify": "^2.2.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-watch": "^4.2.4",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.2.2"
+  }
+}

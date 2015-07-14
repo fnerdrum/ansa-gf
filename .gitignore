@@ -1,0 +1,10 @@
+*.log
+
+# IntelliJ
+.idea/
+**/*.iml
+
+#npm
+node_modules/
+public/bundle.js
+public/index.css
