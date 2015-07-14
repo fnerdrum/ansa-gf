@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "babelify": "^6.1.2",
+    "bootstrap": "^3.3.5",
     "browserify": "^10.2.4",
     "format": "^0.2.1",
     "gulp": "^3.9.0",
