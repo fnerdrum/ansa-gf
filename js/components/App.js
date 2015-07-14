@@ -1,7 +1,9 @@
 import React from 'react';
-import Talkers from './Talkers';
 import TalereStore from './../stores/TalereStore'
 import Actions from './../actions/Actions'
+
+import Talkers from './Talkers';
+import AddTaler from './AddTaler'
 
 function getState() {
     return {
@@ -36,6 +38,7 @@ class App extends React.Component {
                     <img src="img/logo.png" alt="ANSA"/>
                 </header>
                 <section className="main">
+                    <AddTaler/>
                     <Talkers talere={this.state.talere}/>
                 </section>
             </div>
