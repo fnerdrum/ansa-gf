@@ -15,6 +15,11 @@ app.get('/services/talere', function (req, res) {
     res.send(db.getAll());
 });
 
+app.post('/services/talere', function (req, res) {
+    db.add(req.body);
+    res.sendStatus(201); // Created
+});
+
 var port = Number(process.env.PORT || 8080);
 
 var server = app.listen(port, function () {

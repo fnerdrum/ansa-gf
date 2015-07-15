@@ -19,7 +19,40 @@ let Actions = {
                     });
                 }
             })
+    },
+
+    add: (input) => {
+        const split = input.split(" ");
+        const taler = {
+            type: split[0],
+            number: parseInt(split[1]),
+
+        };
+        if (taler.type && taler.number) {
+            agent
+            .post('/services/talere')
+            .send(taler)
+            .end((err) => {
+                    if (err) {
+                        AppDispatcher.dispatch({
+                            actionType: Constants.OPPDATERING_FEILET,
+                            data: null
+                        });
+                    } else {
+                        AppDispatcher.dispatch({
+                            actionType: Constants.OPPDATERING_OK,
+                            data: null
+                        });
+                    }
+                });
+        } else {
+            AppDispatcher.dispatch({
+                actionType: Constants.UGYLDIG_INPUT,
+                data: null
+            });
+        }
     }
+
 };
 
 export default Actions;
