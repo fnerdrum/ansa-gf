@@ -32,6 +32,10 @@ ActionHandlers[Constants.HENTING_PARTICIPANTS_OK] = (action) => {
     _participants = action.data;
     _TalereStore.emitChange();
 };
+ActionHandlers[Constants.NY_TALER] = (action) => {
+    _talere.push(action.data);
+    _TalereStore.emitChange();
+};
 
 AppDispatcher.register(function (action) {
     var callback = ActionHandlers[action.actionType];

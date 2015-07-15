@@ -1,4 +1,6 @@
 import React from 'react';
+import io from 'socket.io-client';
+
 import TalereStore from './../stores/TalereStore'
 import Actions from './../actions/Actions'
 
@@ -19,6 +21,10 @@ class App extends React.Component {
         this._onChange = this._onChange.bind(this);
     }
     componentDidMount() {
+        var socket = io();
+        socket.on('taler', function(taler){
+            Actions.nyTaler(taler);
+        });
         TalereStore.addChangeListener(this._onChange);
         Actions.getAll();
         Actions.getParticipants();

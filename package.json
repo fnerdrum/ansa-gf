@@ -15,12 +15,12 @@
     "express": "^4.13.0",
     "faker": "^3.0.0",
     "flux": "^2.0.3",
+    "http": "0.0.0",
     "keymirror": "^0.1.1",
-    "moment": "^2.10.3",
     "object-assign": "^3.0.0",
     "react": "^0.13.3",
-    "sockjs-client": "^1.0.0",
-    "stompjs": "^2.3.3",
+    "socket.io": "^1.3.6",
+    "socket.io-client": "^1.3.6",
     "superagent": "^1.2.0"
   },
   "devDependencies": {

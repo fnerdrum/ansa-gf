@@ -9,6 +9,7 @@ const Constants = keymirror({
     UGYLDIG_INPUT: null,
     OPPDATERING_FEILET: null,
     OPPDATERING_OK: null,
+    NY_TALER: null,
 });
 
 export default Constants;

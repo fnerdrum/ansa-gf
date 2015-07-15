@@ -69,6 +69,13 @@ let Actions = {
                 data: null
             });
         }
+    },
+
+    nyTaler: (taler) => {
+        AppDispatcher.dispatch({
+            actionType: Constants.NY_TALER,
+            data: taler
+        });
     }
 
 };
