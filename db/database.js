@@ -1,9 +1,9 @@
 var faker = require('faker');
 
 var _talere = [];
-var _participants = {};
+var _deltagere = {};
 for (var i = 1; i <= 200; i++) {
-    _participants[i] = faker.name.findName();
+    _deltagere[i] = faker.name.findName();
 }
 
 var database = {
@@ -16,8 +16,8 @@ var database = {
         _talere.push(taler);
     },
 
-    getParticipants: function () {
-        return _participants;
+    getDeltagere: function () {
+        return _deltagere;
     }
 
 };

@@ -3,7 +3,7 @@ import Store from './Store';
 import Constants from './../Constants';
 
 let _talere = [];
-let _participants = {};
+let _deltagere = {};
 
 class TalereStore extends Store {
     constructor() {
@@ -14,8 +14,8 @@ class TalereStore extends Store {
         return _talere;
     }
 
-    getParticipant(number) {
-        return _participants[number];
+    getDeltager(number) {
+        return _deltagere[number];
     }
 
 }
@@ -28,8 +28,8 @@ ActionHandlers[Constants.HENTING_OK] = (action) => {
     _talere = action.data;
     _TalereStore.emitChange();
 };
-ActionHandlers[Constants.HENTING_PARTICIPANTS_OK] = (action) => {
-    _participants = action.data;
+ActionHandlers[Constants.HENTING_DELTAGERE_OK] = (action) => {
+    _deltagere = action.data;
     _TalereStore.emitChange();
 };
 ActionHandlers[Constants.NY_TALER] = (action) => {

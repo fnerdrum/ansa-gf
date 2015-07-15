@@ -13,12 +13,12 @@ app.get('/', function (req, res) {
     res.sendFile('index.html', {root: path.join(__dirname, '../public')});
 });
 
-app.get('/services/participants', function (req, res) {
-    res.send(db.getParticipants());
+app.get('/services/deltagere', function (req, res) {
+    res.send(db.getDeltagere());
 });
 
-app.get('/services/participants/:number', function (req, res) {
-    res.send(db.getParticipants()[req.params.number]);
+app.get('/services/deltagere/:number', function (req, res) {
+    res.send(db.getDeltagere()[req.params.number]);
 });
 
 app.get('/services/talere', function (req, res) {

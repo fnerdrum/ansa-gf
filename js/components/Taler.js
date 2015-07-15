@@ -9,7 +9,7 @@ class Taler extends React.Component {
             <li className={className}>
                 <p className='number'>{taler.number}</p>
 
-                <p className='name'>{TalereStore.getParticipant(taler.number)}</p>
+                <p className='name'>{TalereStore.getDeltager(taler.number)}</p>
             </li>
         );
     }

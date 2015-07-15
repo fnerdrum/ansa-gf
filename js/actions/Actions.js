@@ -3,18 +3,18 @@ import Constants from './../Constants.js';
 import agent from 'superagent';
 
 let Actions = {
-    getParticipants: () => {
+    getDeltagere: () => {
         agent
-            .get('/services/participants')
+            .get('/services/deltagere')
             .end((err, res) => {
                 if (err) {
                     AppDispatcher.dispatch({
-                        actionType: Constants.HENTING_PARTICIPANTS_FEILET,
+                        actionType: Constants.HENTING_DELTAGERE_FEILET,
                         data: null
                     });
                 } else {
                     AppDispatcher.dispatch({
-                        actionType: Constants.HENTING_PARTICIPANTS_OK,
+                        actionType: Constants.HENTING_DELTAGERE_OK,
                         data: res.body
                     });
                 }

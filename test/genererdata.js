@@ -3,13 +3,13 @@ var faker = require('faker');
 
 var antall = process.argv[2] || 100;
 
-var participants = '';
+var deltagere = '';
 for (var i = 1; i <= antall; i++) {
-    participants += i + ',' + faker.name.findName();
-    if (i <= antall) participants += '\n';
+    deltagere += i + ',' + faker.name.findName();
+    if (i <= antall) deltagere += '\n';
 }
 
-fs.writeFile("participants.csv", participants, function (err) {
+fs.writeFile("deltagere.csv", deltagere, function (err) {
     if (err) {
         return console.log(err);
     }
