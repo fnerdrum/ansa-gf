@@ -8,3 +8,5 @@
 node_modules/
 public/bundle.js
 public/index.css
+
+.DS_Store

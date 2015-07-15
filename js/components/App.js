@@ -6,6 +6,7 @@ import Actions from './../actions/Actions'
 
 import TalerListe from './TalerListe';
 import AddTaler from './AddTaler'
+import LastOppDeltagere from './LastOppDeltagere'
 
 function getState() {
     return {
@@ -44,6 +45,7 @@ class App extends React.Component {
                 <header className="heading">
                     <img src="img/logo.png" alt="ANSA"/>
                 </header>
+                <LastOppDeltagere/>
                 <section className="main">
                     <AddTaler/>
                     <TalerListe talere={this.state.talere}/>

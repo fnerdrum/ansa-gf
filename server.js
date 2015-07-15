@@ -3,10 +3,15 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 var bodyParser = require('body-parser');
+var multer  = require('multer')
 var db = require('./db/database');
 
 
 app.use(bodyParser.json());
+app.use(multer({
+    dest: './uploads',
+    inMemory: true
+}));
 app.use(require('express').static('public'));
 
 app.get('/', function (req, res) {
@@ -32,12 +37,16 @@ app.post('/services/talere', function (req, res) {
     io.emit('taler', taler);
 });
 
-//io.on('connection', function(socket){
-//    console.log('connection');
-//    socket.on('disconnect', function(){
-//        console.log('disconnect');
-//    });
-//});
+app.post('/services/deltagere', function(req, res) {
+    var linjer = req.files.deltagere.buffer.toString('utf-8').split('\n');
+    var deltagere = {};
+    for (var i = 0; i < linjer.length; i++) {
+        var split = linjer[i].split(',');
+        deltagere[split[0]] = split[1];
+    }
+    db.uploadDeltagere(deltagere);
+    res.sendStatus(204); // No Content
+});
 
 
 var port = Number(process.env.PORT || 8080);

@@ -1,10 +1,5 @@
-var faker = require('faker');
-
 var _talere = [];
 var _deltagere = {};
-for (var i = 1; i <= 200; i++) {
-    _deltagere[i] = faker.name.findName();
-}
 
 var database = {
 
@@ -14,6 +9,10 @@ var database = {
 
     addTaler: function (taler) {
         _talere.push(taler);
+    },
+
+    uploadDeltagere: function (deltagere) {
+        _deltagere = deltagere;
     },
 
     getDeltagere: function () {
