@@ -40,13 +40,13 @@ let Actions = {
     },
 
     add: (input) => {
-        const split = input.split(" ");
+        const split = input.trim().split(/\s+/g);
         const taler = {
-            type: split[0],
+            type: split[0].toUpperCase(),
             number: parseInt(split[1]),
 
         };
-        if (taler.type && taler.number) {
+        if (taler.type && gyldigType(taler.type) && taler.number) {
             agent
             .post('/services/talere')
             .send(taler)
@@ -79,5 +79,7 @@ let Actions = {
     }
 
 };
+
+const gyldigType = (type) => ['I', 'R'].some((t) => t === type);
 
 export default Actions;
