@@ -1,4 +1,5 @@
 import React from 'react';
+import TalereStore from './../stores/TalereStore'
 
 class Talkers extends React.Component {
     render() {
@@ -6,7 +7,7 @@ class Talkers extends React.Component {
         return (
             <li className='list-group-item talker'>
                 <p className='number'>{talker.number}</p>
-                <p className='name'>{talker.name}</p>
+                <p className='name'>{TalereStore.getParticipant(talker.number)}</p>
             </li>
         );
     }

@@ -21,6 +21,7 @@ class App extends React.Component {
     componentDidMount() {
         TalereStore.addChangeListener(this._onChange);
         Actions.getAll();
+        Actions.getParticipants();
     }
 
     componentWillUnmount() {

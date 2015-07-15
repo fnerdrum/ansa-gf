@@ -11,12 +11,20 @@ app.get('/', function (req, res) {
     res.sendFile('index.html', {root: path.join(__dirname, '../public')});
 });
 
+app.get('/services/participants', function (req, res) {
+    res.send(db.getParticipants());
+});
+
+app.get('/services/participants/:number', function (req, res) {
+    res.send(db.getParticipants()[req.params.number]);
+});
+
 app.get('/services/talere', function (req, res) {
-    res.send(db.getAll());
+    res.send(db.getTalere());
 });
 
 app.post('/services/talere', function (req, res) {
-    db.add(req.body);
+    db.addTaler(req.body);
     res.sendStatus(201); // Created
 });
 

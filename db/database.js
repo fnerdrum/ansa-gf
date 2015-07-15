@@ -1,22 +1,23 @@
-var _talere = [
-    {name: 'Name', number: 1}
-    , {name: 'Name', number: 2}
-    , {name: 'Name', number: 3}
-    , {name: 'Name', number: 7}
-    , {name: 'Name', number: 8}
-    , {name: 'Name', number: 9}
-    , {name: 'Name', number: 10}
-    , {name: 'Name', number: 110}
-];
+var faker = require('faker');
+
+var _talere = [];
+var _participants = {};
+for (var i = 1; i <= 200; i++) {
+    _participants[i] = faker.name.findName();
+}
 
 var database = {
 
-    getAll: function () {
+    getTalere: function () {
         return _talere;
     },
 
-    add: function (taler) {
+    addTaler: function (taler) {
         _talere.push(taler);
+    },
+
+    getParticipants: function () {
+        return _participants;
     }
 
 };

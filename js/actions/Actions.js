@@ -3,6 +3,24 @@ import Constants from './../Constants.js';
 import agent from 'superagent';
 
 let Actions = {
+    getParticipants: () => {
+        agent
+            .get('/services/participants')
+            .end((err, res) => {
+                if (err) {
+                    AppDispatcher.dispatch({
+                        actionType: Constants.HENTING_PARTICIPANTS_FEILET,
+                        data: null
+                    });
+                } else {
+                    AppDispatcher.dispatch({
+                        actionType: Constants.HENTING_PARTICIPANTS_OK,
+                        data: res.body
+                    });
+                }
+            })
+    },
+
     getAll: () => {
         agent
             .get('/services/talere')
