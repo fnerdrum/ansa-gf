@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import TalereStore from './../stores/TalereStore'
 import Actions from './../actions/Actions'
 
-import Talkers from './Talkers';
+import TalerListe from './TalerListe';
 import AddTaler from './AddTaler'
 
 function getState() {
@@ -46,7 +46,7 @@ class App extends React.Component {
                 </header>
                 <section className="main">
                     <AddTaler/>
-                    <Talkers talere={this.state.talere}/>
+                    <TalerListe talere={this.state.talere}/>
                 </section>
             </div>
         );

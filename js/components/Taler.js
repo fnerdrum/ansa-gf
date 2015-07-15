@@ -1,15 +1,15 @@
 import React from 'react';
 import TalereStore from './../stores/TalereStore'
 
-class Talkers extends React.Component {
+class Taler extends React.Component {
     render() {
-        var talker = this.props.talker;
-        var className = 'list-group-item talker ' + getTypeNavn(talker.type);
+        var taler = this.props.taler;
+        var className = 'list-group-item taler ' + getTypeNavn(taler.type);
         return (
             <li className={className}>
-                <p className='number'>{talker.number}</p>
+                <p className='number'>{taler.number}</p>
 
-                <p className='name'>{TalereStore.getParticipant(talker.number)}</p>
+                <p className='name'>{TalereStore.getParticipant(taler.number)}</p>
             </li>
         );
     }
@@ -26,4 +26,4 @@ const getTypeNavn = (type) => {
     }
 };
 
-export default Talkers;
+export default Taler;
