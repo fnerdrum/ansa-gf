@@ -10,7 +10,7 @@ import LastOppDeltagere from './LastOppDeltagere'
 
 function getState() {
     return {
-        talere: TalereStore.getAll()
+        talere: TalereStore.getTalere()
     }
 }
 
@@ -27,7 +27,7 @@ class App extends React.Component {
             Actions.nyTaler(taler);
         });
         TalereStore.addChangeListener(this._onChange);
-        Actions.getAll();
+        Actions.getTalere();
         Actions.getDeltagere();
     }
 

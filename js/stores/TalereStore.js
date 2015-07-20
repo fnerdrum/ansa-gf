@@ -10,7 +10,7 @@ class TalereStore extends Store {
         super('talerechange');
     }
 
-    getAll() {
+    getTalere() {
         return _talere;
     }
 

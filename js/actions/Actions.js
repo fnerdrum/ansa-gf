@@ -21,7 +21,7 @@ let Actions = {
             })
     },
 
-    getAll: () => {
+    getTalere: () => {
         agent
             .get('/services/talere')
             .end((err, res) => {
