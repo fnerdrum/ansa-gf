@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import AppDispatcher from './../AppDispatcher';
 import Store from './Store';
 import Constants from './../Constants';
@@ -5,13 +6,32 @@ import Constants from './../Constants';
 let _talere = [];
 let _deltagere = {};
 
+function sorter(talere) {
+    return _.sortBy(talere, taler => taler.opprettet);
+}
+
 class TalereStore extends Store {
     constructor() {
         super('talerechange');
     }
 
     getTalere() {
-        return _talere;
+        const grouped = _.groupBy(_talere, taler => taler.type);
+        const innlegg = sorter(grouped.I);
+        const replikker = sorter(grouped.R);
+
+        const frittstaaendeReplikker = replikker.filter(replikk => {
+            return !_.contains(innlegg.map(i => i.id), replikk.parent);
+        });
+        const innleggMedTilhorendeReplikker = innlegg.map(i => {
+            return [i].concat(replikker.filter(r => r.parent === i.id));
+        });
+        return frittstaaendeReplikker.concat(_.flatten(innleggMedTilhorendeReplikker));
+    }
+
+    getGjeldendeInnlegg() {
+        var current = _.head(this.getTalere());
+        return current && current.type === 'I' ? current : null;
     }
 
     getDeltager(number) {

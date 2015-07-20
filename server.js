@@ -32,7 +32,9 @@ app.get('/services/talere', function (req, res) {
 
 app.post('/services/talere', function (req, res) {
     var taler = req.body;
-    db.addTaler(taler);
+    taler.opprettet = new Date();
+    taler.status = 'NY';
+    taler = db.addTaler(taler);
     res.sendStatus(201); // Created
     io.emit('taler', taler);
 });

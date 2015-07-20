@@ -8,7 +8,9 @@ var database = {
     },
 
     addTaler: function (taler) {
+        taler.id = Math.floor(Math.random() * 1000000);
         _talere.push(taler);
+        return taler;
     },
 
     uploadDeltagere: function (deltagere) {

@@ -1,6 +1,7 @@
 import AppDispatcher from './../AppDispatcher.js';
 import Constants from './../Constants.js';
 import agent from 'superagent';
+import TalereStore from './../stores/TalereStore';
 
 let Actions = {
     getDeltagere: () => {
@@ -39,13 +40,17 @@ let Actions = {
             })
     },
 
-    add: (input) => {
+    add: (input, innlegg) => {
         const split = input.trim().split(/\s+/g);
         const taler = {
             type: split[0].toUpperCase(),
             number: parseInt(split[1]),
 
         };
+        if (taler.type === 'R') {
+            var gjeldendeInnlegg = TalereStore.getGjeldendeInnlegg();
+            taler.parent = gjeldendeInnlegg ? gjeldendeInnlegg.id : null;
+        }
         if (taler.type && gyldigType(taler.type) && taler.number) {
             agent
             .post('/services/talere')
