@@ -41,6 +41,7 @@ app.post('/services/talere', function (req, res) {
 app.delete('/services/talere/:id', function (req, res) {
     var id = req.params.id;
     db.fjernTaler(id);
+    res.sendStatus(200); // Ok
     emit('remove', id);
 });
 
