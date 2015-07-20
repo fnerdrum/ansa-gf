@@ -12,6 +12,11 @@ var database = {
         _talere.push(taler);
         return taler;
     },
+    fjernTaler: function (id) {
+        _talere = _talere.filter(function (taler) {
+            return taler.id != id;
+        });
+    },
 
     uploadDeltagere: function (deltagere) {
         _deltagere = deltagere;

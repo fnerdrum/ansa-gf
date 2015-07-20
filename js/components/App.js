@@ -21,10 +21,19 @@ class App extends React.Component {
 
         this._onChange = this._onChange.bind(this);
     }
+
     componentDidMount() {
         var socket = io();
-        socket.on('taler', function(taler){
-            Actions.nyTaler(taler);
+        socket.on('taler', function (event) {
+            switch (event.type) {
+                case 'add':
+                    Actions.nyTaler(event.data);
+                    break;
+                case 'remove':
+                    Actions.talerFjernet(event.data);
+                    break;
+            }
+
         });
         TalereStore.addChangeListener(this._onChange);
         Actions.getTalere();

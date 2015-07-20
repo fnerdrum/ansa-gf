@@ -33,10 +33,15 @@ app.get('/services/talere', function (req, res) {
 app.post('/services/talere', function (req, res) {
     var taler = req.body;
     taler.opprettet = new Date();
-    taler.status = 'NY';
     taler = db.addTaler(taler);
     res.sendStatus(201); // Created
-    io.emit('taler', taler);
+    emit('add', taler);
+});
+
+app.delete('/services/talere/:id', function (req, res) {
+    var id = req.params.id;
+    db.fjernTaler(id);
+    emit('remove', id);
 });
 
 app.post('/services/deltagere', function(req, res) {
@@ -49,6 +54,14 @@ app.post('/services/deltagere', function(req, res) {
     db.uploadDeltagere(deltagere);
     res.sendStatus(204); // No Content
 });
+
+function emit(type, data) {
+    io.emit('taler', {
+        type: type,
+        data: data
+    });
+
+}
 
 
 var port = Number(process.env.PORT || 8080);

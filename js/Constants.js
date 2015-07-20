@@ -10,6 +10,7 @@ const Constants = keymirror({
     OPPDATERING_FEILET: null,
     OPPDATERING_OK: null,
     NY_TALER: null,
+    FJERN_TALER: null,
 });
 
 export default Constants;

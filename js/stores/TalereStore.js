@@ -56,6 +56,10 @@ ActionHandlers[Constants.NY_TALER] = (action) => {
     _talere.push(action.data);
     _TalereStore.emitChange();
 };
+ActionHandlers[Constants.FJERN_TALER] = (action) => {
+    _talere = _talere.filter(taler => taler.id != action.data);
+    _TalereStore.emitChange();
+};
 
 AppDispatcher.register(function (action) {
     var callback = ActionHandlers[action.actionType];

@@ -53,9 +53,9 @@ let Actions = {
         }
         if (taler.type && gyldigType(taler.type) && taler.number) {
             agent
-            .post('/services/talere')
-            .send(taler)
-            .end((err) => {
+                .post('/services/talere')
+                .send(taler)
+                .end((err) => {
                     if (err) {
                         AppDispatcher.dispatch({
                             actionType: Constants.OPPDATERING_FEILET,
@@ -80,6 +80,21 @@ let Actions = {
         AppDispatcher.dispatch({
             actionType: Constants.NY_TALER,
             data: taler
+        });
+    },
+
+    fjernTaler: (taler) => {
+        agent
+            .del('/services/talere/' + taler.id)
+            .end(function (err) {
+                if (err) throw err;
+            });
+    },
+
+    talerFjernet: (id) => {
+        AppDispatcher.dispatch({
+            actionType: Constants.FJERN_TALER,
+            data: id
         });
     }
 
