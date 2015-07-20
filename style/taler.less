@@ -11,9 +11,35 @@
     margin-left: 2rem;
   }
   &.innlegg {
-    background-color: yellow;
+    background-color: @color-secondary-1-0;
+    color: @color-secondary-1-1;
   }
   &.replikk {
-    background-color: green;
+    background-color: @color-primary-0;
+    color: @color-primary-1;
+  }
+  .glyphicon {
+    top: 3px;
+    float: right;
+    cursor: pointer;
+    opacity: 0.2;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    &:hover {
+      opacity: 1;
+    }
+    &.glyphicon-remove {
+      &:hover {
+        color: @color-secondary-2-0;
+      }
+    }
+    &.glyphicon-pencil {
+      right: 1.5rem;
+      &:hover {
+        color: @color-complement-0;
+      }
+    }
   }
 }

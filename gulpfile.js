@@ -54,14 +54,20 @@ function buildLess() {
     }
 }
 
+function copyFonts() {
+    gulp.src(['node_modules/bootstrap/dist/fonts/**/*']).pipe(gulp.dest(distdir + '/fonts'));
+}
+
 gulp.task('default', function () {
     buildJS(false);
     buildLess();
+    copyFonts();
 });
 
 gulp.task('less', buildLess);
 gulp.task('dev', function () {
     buildJS(true);
     buildLess();
+    copyFonts();
     gulp.watch(styleSourcedir + '/**/*.less', ['less']);
 });

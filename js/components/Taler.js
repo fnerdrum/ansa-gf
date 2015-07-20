@@ -10,6 +10,9 @@ class Taler extends React.Component {
                 <p className='number'>{taler.number}</p>
 
                 <p className='name'>{TalereStore.getDeltager(taler.number)}</p>
+
+                <span className="glyphicon glyphicon-remove"></span>
+                <span className="glyphicon glyphicon-pencil"></span>
             </li>
         );
     }
