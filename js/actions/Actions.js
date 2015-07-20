@@ -40,7 +40,7 @@ let Actions = {
             })
     },
 
-    add: (input, innlegg) => {
+    addTaler: (input, innlegg) => {
         const split = input.trim().split(/\s+/g);
         const taler = {
             type: split[0].toUpperCase(),

@@ -16,7 +16,7 @@ class AddTaler extends React.Component {
 
     onSubmit(event) {
         event.preventDefault();
-        Actions.add(this.state.value);
+        Actions.addTaler(this.state.value);
         this.setState({value: ''});
     }
 
