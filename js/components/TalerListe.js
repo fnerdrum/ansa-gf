@@ -5,7 +5,7 @@ class TalerListe extends React.Component {
     render() {
         return (
             <ul className='list-group'>
-                {this.props.talere.map(taler => <Taler taler={taler}/>)}
+                {this.props.talere.map(taler => <Taler taler={taler} key={taler.id}/>)}
             </ul>
         );
     }
