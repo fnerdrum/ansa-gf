@@ -1,5 +1,6 @@
 import React from 'react';
 import Actions from './../actions/Actions'
+import TalereStore from './../stores/TalereStore'
 
 class AddTaler extends React.Component {
     constructor(props) {
@@ -16,7 +17,7 @@ class AddTaler extends React.Component {
 
     onSubmit(event) {
         event.preventDefault();
-        Actions.addTaler(this.state.value);
+        Actions.addTaler(this.state.value, TalereStore.getGjeldendeInnlegg());
         this.setState({value: ''});
     }
 
