@@ -51,14 +51,8 @@ class Hoved extends React.Component {
     render() {
         return (
             <div>
-                <header className="heading">
-                    <img src="img/logo.png" alt="ANSA"/>
-                </header>
-                <LastOppDeltagere/>
-                <section className="main">
-                    <AddTaler/>
-                    <TalerListe talere={this.state.talere}/>
-                </section>
+                <AddTaler/>
+                <TalerListe talere={this.state.talere}/>
             </div>
         );
     }

@@ -4,7 +4,7 @@ var io = require('socket.io')(http);
 
 var bodyParser = require('body-parser');
 var path = require('path');
-var multer  = require('multer');
+var multer = require('multer');
 var db = require('./db/database');
 
 
@@ -14,14 +14,6 @@ app.use(multer({
     inMemory: true
 }));
 app.use(require('express').static('public'));
-
-app.get('/', function (req, res) {
-    res.sendFile('index.html', {root: path.join(__dirname, 'public')});
-});
-
-app.get('/a/*', function (req, res) {
-    res.sendFile('index.html', {root: path.join(__dirname, 'public')});
-});
 
 app.get('/services/deltagere', function (req, res) {
     res.send(db.getDeltagere());
@@ -50,7 +42,7 @@ app.delete('/services/talere/:id', function (req, res) {
     emit('remove', id);
 });
 
-app.post('/services/deltagere', function(req, res) {
+app.post('/services/deltagere', function (req, res) {
     var linjer = req.files.deltagere.buffer.toString('utf-8').split('\n');
     var deltagere = {};
     for (var i = 0; i < linjer.length; i++) {
@@ -59,6 +51,15 @@ app.post('/services/deltagere', function(req, res) {
     }
     db.uploadDeltagere(deltagere);
     res.sendStatus(204); // No Content
+});
+
+app.get('/:id', function (req, res) {
+    var id = req.params.id;
+    if (id === '1234') {
+        res.sendFile('index.html', {root: path.join(__dirname, 'public')});
+    } else {
+        res.sendStatus(404); // Not Found
+    }
 });
 
 function emit(type, data) {
