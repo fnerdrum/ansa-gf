@@ -14,7 +14,7 @@ function getState() {
     }
 }
 
-class App extends React.Component {
+class Hoved extends React.Component {
     constructor(props) {
         super(props);
         this.state = getState();
@@ -64,4 +64,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default Hoved;

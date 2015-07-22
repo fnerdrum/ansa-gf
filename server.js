@@ -3,7 +3,8 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 var bodyParser = require('body-parser');
-var multer  = require('multer')
+var path = require('path');
+var multer  = require('multer');
 var db = require('./db/database');
 
 
@@ -15,7 +16,11 @@ app.use(multer({
 app.use(require('express').static('public'));
 
 app.get('/', function (req, res) {
-    res.sendFile('index.html', {root: path.join(__dirname, '../public')});
+    res.sendFile('index.html', {root: path.join(__dirname, 'public')});
+});
+
+app.get('/a/*', function (req, res) {
+    res.sendFile('index.html', {root: path.join(__dirname, 'public')});
 });
 
 app.get('/services/deltagere', function (req, res) {
