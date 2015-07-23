@@ -9,7 +9,7 @@ class Taler extends React.Component {
     }
 
     remove() {
-        Actions.fjernTaler(this.props.taler);
+        Actions.fjernTaler(this.props.id, this.props.taler);
     }
     render() {
         var taler = this.props.taler;

@@ -17,7 +17,7 @@ class AddTaler extends React.Component {
 
     onSubmit(event) {
         event.preventDefault();
-        Actions.addTaler(this.state.value, TalereStore.getGjeldendeInnlegg());
+        Actions.addTaler(this.props.id, this.state.value, TalereStore.getGjeldendeInnlegg());
         this.setState({value: ''});
     }
 

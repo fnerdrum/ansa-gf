@@ -3,9 +3,9 @@ import Constants from './../Constants.js';
 import agent from 'superagent';
 
 let Actions = {
-    getDeltagere: () => {
+    getDeltagere: (id) => {
         agent
-            .get('/services/deltagere')
+            .get('/services/' + id + '/deltagere')
             .end((err, res) => {
                 if (err) {
                     AppDispatcher.dispatch({
@@ -21,9 +21,9 @@ let Actions = {
             })
     },
 
-    getTalere: () => {
+    getTalere: (id) => {
         agent
-            .get('/services/talere')
+            .get('/services/' + id + '/talere')
             .end((err, res) => {
                 if (err) {
                     AppDispatcher.dispatch({
@@ -39,7 +39,7 @@ let Actions = {
             })
     },
 
-    addTaler: (input, gjeldendeInnlegg) => {
+    addTaler: (id, input, gjeldendeInnlegg) => {
         const split = input.trim().split(/\s+/g);
         const taler = {
             type: split[0].toUpperCase(),
@@ -51,7 +51,7 @@ let Actions = {
         }
         if (taler.type && gyldigType(taler.type) && taler.number) {
             agent
-                .post('/services/talere')
+                .post('/services/' + id + '/talere')
                 .send(taler)
                 .end((err) => {
                     if (err) {
@@ -81,9 +81,9 @@ let Actions = {
         });
     },
 
-    fjernTaler: (taler) => {
+    fjernTaler: (id, taler) => {
         agent
-            .del('/services/talere/' + taler.id)
+            .del('/services/' + id + '/talere/' + taler.id)
             .end(function (err) {
                 if (err) throw err;
             });

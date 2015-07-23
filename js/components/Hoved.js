@@ -19,12 +19,13 @@ class Hoved extends React.Component {
         super(props);
         this.state = getState();
 
+        this.componentDidMount = this.componentDidMount.bind(this);
         this._onChange = this._onChange.bind(this);
     }
 
     componentDidMount() {
         var socket = io();
-        socket.on('taler', function (event) {
+        socket.on('talere-' + this.props.params.id, function (event) {
             switch (event.type) {
                 case 'add':
                     Actions.nyTaler(event.data);
@@ -36,8 +37,9 @@ class Hoved extends React.Component {
 
         });
         TalereStore.addChangeListener(this._onChange);
-        Actions.getTalere();
-        Actions.getDeltagere();
+        var id = this.props.params.id;
+        Actions.getTalere(id);
+        Actions.getDeltagere(id);
     }
 
     componentWillUnmount() {
@@ -51,8 +53,8 @@ class Hoved extends React.Component {
     render() {
         return (
             <div>
-                <AddTaler/>
-                <TalerListe talere={this.state.talere}/>
+                <AddTaler id={this.props.params.id}/>
+                <TalerListe id={this.props.params.id} talere={this.state.talere}/>
             </div>
         );
     }

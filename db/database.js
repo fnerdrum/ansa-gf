@@ -1,29 +1,34 @@
-var _talere = [];
+var _talere = {};
 var _deltagere = {};
 
 var database = {
 
-    getTalere: function () {
-        return _talere;
+    getTalere: function (id) {
+        return _talere[id] || [];
     },
 
-    addTaler: function (taler) {
+    addTaler: function (id, taler) {
+        _talere[id] = _talere[id] || [];
+
         taler.id = Math.floor(Math.random() * 1000000);
-        _talere.push(taler);
+        _talere[id].push(taler);
         return taler;
     },
-    fjernTaler: function (id) {
-        _talere = _talere.filter(function (taler) {
-            return taler.id != id;
+
+    fjernTaler: function (id, taler) {
+        _talere[id] = _talere[id].filter(function (t) {
+            return t.id != taler;
         });
     },
 
     uploadDeltagere: function (deltagere) {
-        _deltagere = deltagere;
+        var id = Math.floor(Math.random() * 1000000);
+        _deltagere[id] = deltagere;
+        return id;
     },
 
-    getDeltagere: function () {
-        return _deltagere;
+    getDeltagere: function (id) {
+        return _deltagere[id];
     }
 
 };

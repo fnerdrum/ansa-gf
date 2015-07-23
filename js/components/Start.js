@@ -1,8 +1,9 @@
 import React from 'react';
+import LastOppDeltagere from './LastOppDeltagere';
 
 class Start extends React.Component {
     render() {
-        return <h1>Hello, world!</h1>
+        return <LastOppDeltagere/>
     }
 }
 

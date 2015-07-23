@@ -15,31 +15,30 @@ app.use(multer({
 }));
 app.use(require('express').static('public'));
 
-app.get('/services/deltagere', function (req, res) {
-    res.send(db.getDeltagere());
+app.get('/services/:id/deltagere', function (req, res) {
+    res.send(db.getDeltagere(req.params.id));
 });
 
-app.get('/services/deltagere/:number', function (req, res) {
-    res.send(db.getDeltagere()[req.params.number]);
+app.get('/services/:id/talere', function (req, res) {
+    var id = req.params.id;
+    res.send(db.getTalere(id));
 });
 
-app.get('/services/talere', function (req, res) {
-    res.send(db.getTalere());
-});
-
-app.post('/services/talere', function (req, res) {
+app.post('/services/:id/talere', function (req, res) {
+    var id = req.params.id;
     var taler = req.body;
     taler.opprettet = new Date();
-    taler = db.addTaler(taler);
+    taler = db.addTaler(id, taler);
     res.sendStatus(201); // Created
-    emit('add', taler);
+    emit(id, 'add', taler);
 });
 
-app.delete('/services/talere/:id', function (req, res) {
+app.delete('/services/:id/talere/:taler', function (req, res) {
     var id = req.params.id;
-    db.fjernTaler(id);
+    var taler = req.params.taler;
+    db.fjernTaler(id, taler);
     res.sendStatus(200); // Ok
-    emit('remove', id);
+    emit(id, 'remove', taler);
 });
 
 app.post('/services/deltagere', function (req, res) {
@@ -49,21 +48,21 @@ app.post('/services/deltagere', function (req, res) {
         var split = linjer[i].split(',');
         deltagere[split[0]] = split[1];
     }
-    db.uploadDeltagere(deltagere);
-    res.sendStatus(204); // No Content
+    var id = db.uploadDeltagere(deltagere);
+    res.status(201).json({id: id}); // Created
 });
 
 app.get('/:id', function (req, res) {
     var id = req.params.id;
-    if (id === '1234') {
+    if (db.getDeltagere(id)) {
         res.sendFile('index.html', {root: path.join(__dirname, 'public')});
     } else {
         res.sendStatus(404); // Not Found
     }
 });
 
-function emit(type, data) {
-    io.emit('taler', {
+function emit(id, type, data) {
+    io.emit('talere-' + id, {
         type: type,
         data: data
     });
