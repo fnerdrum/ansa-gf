@@ -11,11 +11,14 @@ class Taler extends React.Component {
     remove() {
         Actions.fjernTaler(this.props.id, this.props.taler);
     }
+
     render() {
         var taler = this.props.taler;
         var className = 'list-group-item taler ' + getTypeNavn(taler.type);
         return (
             <li className={className}>
+                <span>{getTypeSymbol(taler.type)}</span>
+
                 <p className='number'>{taler.number}</p>
 
                 <p className='name'>{TalereStore.getDeltager(taler.number)}</p>
@@ -35,6 +38,17 @@ const getTypeNavn = (type) => {
             return 'replikk';
         default :
             return 'ukjent';
+    }
+};
+
+const getTypeSymbol = (type) => {
+    switch (type) {
+        case 'I':
+            return 'Ⓘ';
+        case 'R':
+            return 'Ⓡ';
+        default:
+            return 'Ⓧ';
     }
 };
 
