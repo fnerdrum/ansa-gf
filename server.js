@@ -61,6 +61,15 @@ app.get('/:id', function (req, res) {
     }
 });
 
+app.get('/:id/deltagere', function (req, res) {
+    var id = req.params.id;
+    if (db.getDeltagere(id)) {
+        res.sendFile('index.html', {root: path.join(__dirname, 'public')});
+    } else {
+        res.sendStatus(404); // Not Found
+    }
+});
+
 function emit(id, type, data) {
     io.emit('talere-' + id, {
         type: type,

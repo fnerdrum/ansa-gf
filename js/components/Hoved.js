@@ -1,4 +1,5 @@
 import React from 'react';
+import Router from 'react-router';
 import io from 'socket.io-client';
 
 import TalereStore from './../stores/TalereStore'
@@ -7,6 +8,8 @@ import Actions from './../actions/Actions'
 import TalerListe from './TalerListe';
 import AddTaler from './AddTaler'
 import LastOppDeltagere from './LastOppDeltagere'
+
+const Link = Router.Link;
 
 function getState() {
     return {
@@ -55,6 +58,7 @@ class Hoved extends React.Component {
             <div>
                 <AddTaler id={this.props.params.id}/>
                 <TalerListe id={this.props.params.id} talere={this.state.talere}/>
+                <Link to={'/:id/deltagere'} params={{id: this.props.params.id}}>Se alle deltagere</Link>
             </div>
         );
     }

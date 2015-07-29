@@ -34,6 +34,10 @@ class TalereStore extends Store {
         return current && current.type === 'I' ? current : null;
     }
 
+    getDeltagere() {
+        return _deltagere;
+    }
+
     getDeltager(number) {
         return _deltagere[number];
     }
