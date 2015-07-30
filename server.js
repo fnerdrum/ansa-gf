@@ -42,7 +42,7 @@ app.delete('/services/:id/talere/:taler', function (req, res) {
 });
 
 app.post('/services/deltagere', function (req, res) {
-    var linjer = req.files.deltagere.buffer.toString('utf-8').split('\n');
+    var linjer = req.files.deltagere.buffer.toString('utf-8').split(/\r?\n/);
     var deltagere = {};
     for (var i = 0; i < linjer.length; i++) {
         var split = linjer[i].split(',');

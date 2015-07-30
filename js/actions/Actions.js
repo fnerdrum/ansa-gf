@@ -39,39 +39,23 @@ let Actions = {
             })
     },
 
-    addTaler: (id, input, gjeldendeInnlegg) => {
-        const split = input.trim().split(/\s+/g);
-        const taler = {
-            type: split[0].toUpperCase(),
-            number: parseInt(split[1]),
-
-        };
-        if (taler.type === 'R') {
-            taler.parent = gjeldendeInnlegg ? gjeldendeInnlegg.id : null;
-        }
-        if (taler.type && gyldigType(taler.type) && taler.number) {
-            agent
-                .post('/services/' + id + '/talere')
-                .send(taler)
-                .end((err) => {
-                    if (err) {
-                        AppDispatcher.dispatch({
-                            actionType: Constants.OPPDATERING_FEILET,
-                            data: null
-                        });
-                    } else {
-                        AppDispatcher.dispatch({
-                            actionType: Constants.OPPDATERING_OK,
-                            data: null
-                        });
-                    }
-                });
-        } else {
-            AppDispatcher.dispatch({
-                actionType: Constants.UGYLDIG_INPUT,
-                data: null
+    addTaler: (id, taler) => {
+        agent
+            .post('/services/' + id + '/talere')
+            .send(taler)
+            .end((err) => {
+                if (err) {
+                    AppDispatcher.dispatch({
+                        actionType: Constants.OPPDATERING_FEILET,
+                        data: null
+                    });
+                } else {
+                    AppDispatcher.dispatch({
+                        actionType: Constants.OPPDATERING_OK,
+                        data: null
+                    });
+                }
             });
-        }
     },
 
     nyTaler: (taler) => {

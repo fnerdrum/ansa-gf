@@ -6,7 +6,6 @@ const Constants = keymirror({
     HENTING_FEILET: null,
     HENTING_DELTAGERE_OK: null,
     HENTING_DELTAGERE_FEILET: null,
-    UGYLDIG_INPUT: null,
     OPPDATERING_FEILET: null,
     OPPDATERING_OK: null,
     NY_TALER: null,
