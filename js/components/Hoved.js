@@ -36,6 +36,9 @@ class Hoved extends React.Component {
                 case 'remove':
                     Actions.talerFjernet(event.data);
                     break;
+                case 'change':
+                    Actions.talerEndret(event.data);
+                    break;
             }
 
         });

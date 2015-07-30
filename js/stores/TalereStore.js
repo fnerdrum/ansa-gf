@@ -64,6 +64,15 @@ ActionHandlers[Constants.FJERN_TALER] = (action) => {
     _talere = _talere.filter(taler => taler.id != action.data);
     _TalereStore.emitChange();
 };
+ActionHandlers[Constants.TALER_ENDRET] = (action) => {
+    _talere = _talere.map(taler => {
+        if (taler.id === action.data.id) {
+            return action.data;
+        }
+        return taler;
+    });
+    _TalereStore.emitChange();
+};
 
 AppDispatcher.register(function (action) {
     var callback = ActionHandlers[action.actionType];

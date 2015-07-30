@@ -58,6 +58,25 @@ let Actions = {
             });
     },
 
+    endreTaler: (id, taler) => {
+        agent
+            .put('/services/' + id + '/talere')
+            .send(taler)
+            .end((err) => {
+                if (err) {
+                    AppDispatcher.dispatch({
+                        actionType: Constants.OPPDATERING_FEILET,
+                        data: null
+                    });
+                } else {
+                    AppDispatcher.dispatch({
+                        actionType: Constants.OPPDATERING_OK,
+                        data: null
+                    });
+                }
+            });
+    },
+
     nyTaler: (taler) => {
         AppDispatcher.dispatch({
             actionType: Constants.NY_TALER,
@@ -77,6 +96,13 @@ let Actions = {
         AppDispatcher.dispatch({
             actionType: Constants.FJERN_TALER,
             data: id
+        });
+    },
+
+    talerEndret: (taler) => {
+        AppDispatcher.dispatch({
+            actionType: Constants.TALER_ENDRET,
+            data: taler
         });
     }
 

@@ -33,6 +33,14 @@ app.post('/services/:id/talere', function (req, res) {
     emit(id, 'add', taler);
 });
 
+app.put('/services/:id/talere', function (req, res) {
+    var id = req.params.id;
+    var taler = req.body;
+    db.endreTaler(id, taler);
+    res.sendStatus(200); // Ok
+    emit(id, 'change', taler);
+});
+
 app.delete('/services/:id/talere/:taler', function (req, res) {
     var id = req.params.id;
     var taler = req.params.taler;

@@ -21,6 +21,15 @@ var database = {
         });
     },
 
+    endreTaler: function (id, taler) {
+        _talere[id] = _talere[id].map(function (t) {
+            if (t.id === taler.id) {
+                return taler;
+            }
+            return t;
+        })
+    },
+
     uploadDeltagere: function (deltagere) {
         var id = Math.floor(Math.random() * 1000000);
         _deltagere[id] = deltagere;
