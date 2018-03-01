@@ -86,7 +86,6 @@ function emit(id, type, data) {
 
 }
 
-
 var port = Number(process.env.PORT || 8080);
 http.listen(port, function () {
     var host = http.address().address;
